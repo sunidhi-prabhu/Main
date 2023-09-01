@@ -6,10 +6,10 @@ public class Find_i {
         Scanner in = new Scanner(System.in);
         System.out.println("enter the index at which you want to find the number");
         int n = in.nextInt();
-        int ans = find(n);
+        int ans = find(n , arr);
         System.out.println(ans);
     }
-    static int find (int n){
-        return(n&(1<<(n-1)));
+    static int find (int n,int[] arr){
+        return(arr[n] & (1<<(n-1)));
     }
 }
