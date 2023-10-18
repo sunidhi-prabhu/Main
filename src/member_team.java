@@ -3,35 +3,53 @@ import java.util.Scanner;
 public class member_team {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int n , m;
-        float avg;
-        System.out.println("enter the total number of teams");
-        n = in.nextInt();
-        System.out.println("enter the total number of members in each team");
-        m = in.nextInt();
+        int totalPlayers;
+        System.out.println("Enter the total number of players:");
+        totalPlayers = in.nextInt();
         in.nextLine();
-        String[][][] arr = new String[n][m][3];
-        for (int i = 0; i < n; i++) {
-            System.out.println("enter the team name");
-            String team = in.nextLine();
-            for (int j = 0; j < m; j++) {
-                System.out.println("enter  the team member");
-                String member = in.nextLine();
-                System.out.println("enter batting avg");
-                avg = in.nextFloat();
-                in.nextLine();
 
+        String[][] playerInfo = new String[totalPlayers][3];
+        String[] teamNames = new String[totalPlayers];
+        int teamCount = 0;
 
+        for (int i = 0; i < totalPlayers; i++) {
+            System.out.println("For player " + (i + 1));
+            System.out.println("Enter player name:");
+            String playerName = in.nextLine();
+            System.out.println("Enter his team:");
+            String teamName = in.nextLine();
+            System.out.println("Enter his batting average:");
+            String battingAvg = in.nextLine();
 
-                arr[i][j][0] = team;
-                arr[i][j][1] = member;
-                arr[i][j][2] = String.valueOf(avg);
+            int teamIndex = -1;
+            for (int j = 0; j < teamCount; j++) {
+                if (teamNames[j].equals(teamName)) {
+                    teamIndex = j;
+                    break;
+                }
+            }
+
+            if (teamIndex == -1) {
+                teamNames[teamCount] = teamName;
+                teamIndex = teamCount;
+                teamCount++;
+            }
+
+            playerInfo[i][0] = playerName;
+            playerInfo[i][1] = teamName;
+            playerInfo[i][2] = battingAvg;
+        }
+
+        for (int i = 0; i < teamCount; i++) {
+            String team = teamNames[i];
+            System.out.println("\nTeam: " + team);
+            for (String[] player : playerInfo) {
+                if (player[1].equals(team)) {
+                    System.out.println("Player: " + player[0] + ", Batting Avg: " + player[2]);
+                }
             }
         }
-        for (String[][] teamArray : arr) {
-            for (String[] memberInfo : teamArray) {
-                System.out.println("Team: " + memberInfo[0] + ", Member: " + memberInfo[1] + ", Batting Avg: " + memberInfo[2]);
-            }
-        }
+
+
     }
 }
