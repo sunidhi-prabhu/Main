@@ -1,12 +1,15 @@
 public class num_rev {
     public static void main(String[] args) {
-        int n , m = 12345;
-        n = numrev(m);
-        System.out.println(n);
+        int m = 12345;
+        numrev(m);
+        System.out.println(sum);
     }
+    static int sum = 0;
     static int numrev(int m){
         if(m == 0)
-            return 1;
-        return (10*(m%10)) + numrev(m/10);
+            return;
+        int rem = m % 10;
+        sum = sum * 10 + rem;
+        numrev(m/10);
     }
 }
