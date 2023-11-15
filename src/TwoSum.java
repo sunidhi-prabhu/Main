@@ -12,18 +12,29 @@ public class TwoSum {
         for (int i = 0; i < n; i++) {
             arr[i] = in.nextInt();
         }
-        int[] sum = new int[n];
+        //int[] sum = new int[n];
         System.out.println(Arrays.toString(arr));
         System.out.println("enter the number to check sum");
         int k = in.nextInt();
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = i+1; j < n; j++) {
-                if(arr[i] + arr[j] == k) {
-                    sum[i] = i;
-                sum[j] = j;
+        int low = 0;
+        int high = n-1;
+        while(low <= high){
+            int sum = arr[low] + arr[high];
+            if(sum == k) {
+                System.out.println("[" + arr[low] + "," + arr[high] + "]");
+                return;
+
+            } else if (sum < k) {
+                low ++;
+
+            }else{
+                high --;
+            }
+
+        }
+
             }
         }
-        }
-        System.out.println(Arrays.toString(sum));
-    }
-}
+
+
+
